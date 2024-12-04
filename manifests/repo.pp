@@ -1,6 +1,7 @@
 # Copyright (C) 2015, Wazuh Inc.
 # Wazuh repository installation
 class wazuh::repo (
+  $apt_location_url = 'https://packages.wazuh.com/4.x/apt',
 ) {
 
   case $::osfamily {
@@ -21,7 +22,7 @@ class wazuh::repo (
           apt::source { 'wazuh':
             ensure   => present,
             comment  => 'This is the WAZUH Ubuntu repository',
-            location => 'https://packages.wazuh.com/4.x/apt',
+            location => $apt_location_url,
             release  => 'stable',
             repos    => 'main',
             include  => {
